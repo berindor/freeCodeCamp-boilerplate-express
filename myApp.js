@@ -40,10 +40,15 @@ app.get('/:word/echo', function (req, res) {
 
 const urlencodedParser = bodyParser.urlencoded({ extended: false });
 
-app.route('/name').get(function (req, res) {
-  res.json({ name: req.query.first + ' ' + req.query.last });
-});
-
 app.use(urlencodedParser);
+
+app
+  .route('/name')
+  .get(function (req, res) {
+    res.json({ name: req.query.first + ' ' + req.query.last });
+  })
+  .post(urlencodedParser, function (req, res) {
+    res.json({ name: req.body.first + ' ' + req.body.last });
+  });
 
 module.exports = app;
