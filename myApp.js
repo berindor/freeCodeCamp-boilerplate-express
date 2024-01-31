@@ -43,6 +43,6 @@ app
   .get(function (req, res) {
     res.json({ name: req.query.first + ' ' + req.query.last });
   })
-  .post(bodyParser.urlencoded({ extended: false }));
+  .use(bodyParser.urlencoded({ extended: false }));
 
 module.exports = app;
