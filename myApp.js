@@ -38,11 +38,12 @@ app.get('/:word/echo', function (req, res) {
   res.json({ echo: req.params.word });
 });
 
-app
-  .route('/name')
-  .get(function (req, res) {
-    res.json({ name: req.query.first + ' ' + req.query.last });
-  })
-  .use(bodyParser.urlencoded({ extended: false }));
+const urlencodedParser = bodyParser.urlencoded({ extended: false });
+
+app.route('/name').get(function (req, res) {
+  res.json({ name: req.query.first + ' ' + req.query.last });
+});
+
+app.use(urlencodedParser);
 
 module.exports = app;
